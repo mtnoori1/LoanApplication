@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="frame">
+      <div class="nav">
+        <ul class="links">
+          <li class="loan-app"><a class="btn">Loan Application</a></li>         
+        </ul>
+      </div>
+      <div ng-app ng-init="checked = false">
+      <form class="form-signin" action="" method="post" name="form">
+            <label for="username">Username</label>
+            <input class="form-styling" type="username" id="username" name="username" placeholder="" [(ngModel)]="username"/>
+
+            <label for="password">Password</label>
+            <input class="form-styling" type="password" name="password" placeholder="" [(ngModel)]="password"/>
+    
+           
+            <div class="btn-animate">
+              <a class="btn-signin" (click)="onLoginClick()">Sign in</a>
+            </div>
+                  </form>
+                </div> 
+              </div> 
+

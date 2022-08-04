@@ -1,0 +1,236 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="backgrd">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <div>
+
+<!-------------------Loan Cards Addition--------------------------------->
+
+
+            <button class="btn btn-outline-success " type="button" class="btn btn-light"(click)="openPopup()"> 
+              +LoanCards
+            </button>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}"aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Loans details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlloannumber">Loan Number</label>
+            <input type="loannumber" class="form-control" id="exampleFormControlInput1" placeholder="0123456789">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlloanamoiunt">Loan Amount</label>
+            <input type="loanamount" class="form-control" id="exampleFormControlInput1" placeholder="0123456789">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlloanterm">Loan Term</label>
+            <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlborrower">Borrower Informations</label>
+            <textarea class="form-control" id="exampleFormControlborrower" rows="2"></textarea>
+          </div>    
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Property Information</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                 </div>
+                 <div class="form-group">
+                  <label for="exampleFormControlSelect2">Status</label>
+                  <select  class="form-control" id="exampleFormControlSelect2">
+                    <option>Pending</option>
+                    <option>Progress</option>
+                    <option>Approved</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlloanterm">Loan Management Fee</label>
+                  <input type="loanMan" class="form-control" id="exampleFormControlInput1" placeholder="$10000">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlloanterm">Orgination date</label>
+                  <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlloanterm">Orgination Account</label>
+                  <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleFormControlborrower">Lien Information</label>
+                  <textarea class="form-control" id="exampleFormControlborrower" rows="2"></textarea>
+                </div>   
+                
+                
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success"  (click)="closePopup()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-------------------Loan Cards Addition Ends-------------------------------------------->
+          </div>
+          </li>
+        </ul>
+        <form class="container h-50 d-flex justify-content-center align-items-center" >
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <form class="d-flex">     
+          <button class="btn btn-outline-danger" type="submit" (click)="Logout()">Logout</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <hr />
+  <div class="container-fluid d-flex" id="con" >
+
+    <!-----------------------------Dash Board tables Addition---------------------------->
+    <table class="table table-hover" id="padd" >
+      <thead>
+        <tr class="headr" >
+          <th scope="col"*ngFor="let tab of tabheader" >{{tab}}</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Mark</td>
+          <!-------Creating Modal Pop up to shows loan details in a page------------->
+          <td><button class="btn btn-outline-success " type="button" class="btn"(click)="openPopupView()"> 
+            View Details
+          </button>
+          <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleview}"aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+             <div class="modal-content">
+              <div class="modal-header">
+               <h4 class="modal-title">Loans Detail Information</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopupView()" >
+                <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <!--Modal body of view table-->
+         <div class="modal-body">
+          <table class="table table-striped" >
+            <tbody class="viewTab" >
+             <td >
+              <tr *ngFor="let tab of tabhead" >
+                {{tab}}
+              </tr>            
+           </td>
+          <td>
+            <tr>
+              1234567
+            </tr> 
+          </td>
+       </tbody>
+     </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger"  (click)="closePopupView()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+</td>
+<!-------Below Code Contains Model Popup for Edit and only accessible to Admin operations Delete-->
+    <td>
+      <button  type="button" class="btn "(click)="openPopupEditDelete()"> 
+        Edit/Delete
+      </button>
+     <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEditDelete}"aria-hidden="true" >
+     <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h4 class="modal-title">Edit Loans details</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopupEditDelete()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlloannumber">Loan Number</label>
+      <input type="loannumber" class="form-control" id="exampleFormControlInput1" placeholder="0123456789">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlloanamoiunt">Loan Amount</label>
+      <input type="loanamount" class="form-control" id="exampleFormControlInput1" placeholder="0123456789">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlloanterm">Loan Term</label>
+      <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlborrower">Borrower Informations</label>
+      <textarea class="form-control" id="exampleFormControlborrower" rows="2"></textarea>
+    </div>    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Property Information</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+           </div>
+           <div class="form-group">
+            <label for="exampleFormControlSelect2">Status</label>
+            <select  class="form-control" id="exampleFormControlSelect2">
+              <option>Pending</option>
+              <option>Progress</option>
+              <option>Approved</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlloanterm">Loan Management Fee</label>
+            <input type="loanMan" class="form-control" id="exampleFormControlInput1" placeholder="$10000">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlloanterm">Orgination date</label>
+            <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlloanterm">Orgination Account</label>
+            <input type="loanterm" class="form-control" id="exampleFormControlInput1" placeholder="10">
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleFormControlborrower">Lien Information</label>
+            <textarea class="form-control" id="exampleFormControlborrower" rows="2"></textarea>
+          </div>           
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success"  (click)="closePopupEditDelete()">
+    Update
+    </button>
+    <button type="button" class="btn btn-outline-danger"  (click)="closePopupEditDelete()">
+    Delete
+    </button>
+</div>
+</div>
+</div>
+</div>
+    </td>
+
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>

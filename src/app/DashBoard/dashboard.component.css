@@ -1,0 +1,19 @@
+#con{
+    padding-top: 50px;   
+}
+
+#padd{
+    border:1px solid gray;
+}
+.headr{
+    background: lightgrey;
+  }
+.viewTab{
+    border: 1px solid gray;
+}
+.tdviewtavn{
+    border-right: 1px solid gray;
+}
+.tbody.td.tr{
+    border: 0px;
+}
