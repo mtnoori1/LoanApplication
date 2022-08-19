@@ -1,3 +1,5 @@
+using Loan_Webapi.Services.LoanService;
+using Loan_Webapi.Services.UserService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@ namespace Loan_Webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ILoanServices, LoanServices>();
+            services.AddScoped<IUserServices,UserServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
