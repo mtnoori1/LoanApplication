@@ -1,23 +1,33 @@
-<div class="container">
-    <div class="frame">
-      <div class="nav">
-        <ul class="links">
-          <li class="loan-app"><a class="btn">Loan Application</a></li>         
-        </ul>
-      </div>
-      <div ng-app ng-init="checked = false">
-      <form class="form-signin" action="" method="post" name="form">
-            <label for="username">Username</label>
-            <input class="form-styling" type="username" id="username" name="username" placeholder="" [(ngModel)]="username"/>
+<form class="border p-3 rounded-3" [formGroup]="loginform" (ngSubmit)="onLoginClick()">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-light">
+      <span class="fs-3">Login</span>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col mb-3">
+          <label for="username" class="form-label"><b>UserName</b></label>
+          <input type="username" class="form-control" id="username" formControlName="username">
+          <div class="form-text text-danger" *ngIf="UserName.errors?.['required'] && (UserName.dirty || UserName.touched)">
+            UserName is required
+          </div>
+        </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+        <label for="pwd" class="form-label"><b>Password</b></label>
+        <input type="pwd" class="form-control" id="pwd" formControlName="pwd">
+        <div class="form-text text-danger" *ngIf="PWD.errors?.['required'] && (PWD.dirty || PWD.touched)">
+          Password is Required
+        </div>
+    </div>
+</div>
 
-            <label for="password">Password</label>
-            <input class="form-styling" type="password" name="password" placeholder="" [(ngModel)]="password"/>
-    
-           
-            <div class="btn-animate">
-              <a class="btn-signin" (click)="onLoginClick()">Sign in</a>
-            </div>
-                  </form>
-                </div> 
-              </div> 
-
+<div class="row">
+  <div class="col-6 offset-3">
+     <div class="d-grid">
+       <button type="submit" [disabled]="loginform.invalid" class="btn btn-primary">Login</button>
+     </div>
+  </div>
+</div>
+</form>
