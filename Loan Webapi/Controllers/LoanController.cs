@@ -27,7 +27,7 @@ namespace Loan_Webapi.Controllers
         }
         
         [Route("delbyid")]
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<ServiceResponse<string>> Delbyid(int id)
         {
             return await _loanservices.DelById(id);

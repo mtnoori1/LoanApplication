@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace Loan_Webapi.Controllers
@@ -26,6 +27,19 @@ namespace Loan_Webapi.Controllers
         public async Task<ServiceResponse<List<User>>> UserDetails()
         {
             return await _userservices.GetUsers();
+        }
+        [Route("LoginUser")]
+        [System.Web.Http.HttpPost]
+        public IActionResult Login(User _usr)
+        {
+            string useravailable = _userservices.LoginUser(_usr);
+            if (useravailable == "Yes") {
+                return Ok("Success");
+            }else
+            {
+                return Ok("Failure");
+            }
+              
         }
     }
 }

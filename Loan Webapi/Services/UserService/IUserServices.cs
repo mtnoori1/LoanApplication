@@ -9,5 +9,6 @@ namespace Loan_Webapi.Services.UserService
     public interface IUserServices
     {
        Task<ServiceResponse<List<User>>> GetUsers();
+        string LoginUser(User usr);
     }
 }

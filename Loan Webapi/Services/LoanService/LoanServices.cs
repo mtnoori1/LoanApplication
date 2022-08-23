@@ -1,4 +1,6 @@
-﻿using Loan_Webapi.Models;
+﻿using Loan_Webapi.Data;
+using Loan_Webapi.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,18 +8,26 @@ using System.Threading.Tasks;
 
 namespace Loan_Webapi.Services.LoanService
 {
+
+    
     public class LoanServices : ILoanServices
     {
-        List<Loan> _loan = new List<Loan>();
+        private readonly DataContext _datacontext;
+        public LoanServices(DataContext datacontext)
+        {
+            _datacontext = datacontext;
+        }
+    
        
         public async Task<ServiceResponse<string>> DelById(int id)
         {
             ServiceResponse<string> _servicersp = new ServiceResponse<string>();
-            string msg = null; ;
-            
-               Loan delloan=_loan.Find(x => x.id == id);
-                _loan.Remove(delloan);
-                msg = "successfully deleted";
+            string msg = null;
+
+            Loan delloan = await _datacontext._loan.FirstAsync(y => y.id == id);
+            _datacontext._loan.Remove(delloan);
+            await _datacontext.SaveChangesAsync();
+             msg = "successfully deleted";
             
             _servicersp.message = msg;
             return _servicersp;
@@ -26,22 +36,16 @@ namespace Loan_Webapi.Services.LoanService
         public async Task<ServiceResponse<List<Loan>>> GetAllData()
         {
             ServiceResponse<List<Loan>> _service = new ServiceResponse<List<Loan>>();
-            _service.Data = _loan;
+            List<Loan> dbdata= await _datacontext._loan.ToListAsync();
+            _service.Data = dbdata;
             return _service;
         }
 
         public async  Task<ServiceResponse<string>> PostbyBody(Loan ln)
         {
-            ServiceResponse<string> _services = new ServiceResponse<string>();
-            if (_loan.Count == 0)
-            {
-                ln.id = 1;
-            }
-            else
-            {
-                ln.id = _loan.Max(x => x.id) + 1;
-            }
-            _loan.Add(ln);
+            ServiceResponse<string> _services = new ServiceResponse<string>();           
+            await _datacontext._loan.AddAsync(ln);
+            await _datacontext.SaveChangesAsync();
             _services.message="Post changes saved";
             
             return _services;
@@ -50,17 +54,16 @@ namespace Loan_Webapi.Services.LoanService
         public async Task<ServiceResponse<Loan>> PutByBody(Loan updateloan)
         {
                ServiceResponse<Loan> _srvc = new ServiceResponse<Loan>();
-            if (_loan.Count > 0)
-            {
-                Loan _lon = _loan.FirstOrDefault(x => x.id == updateloan.id);
+
+                Loan _lon = await _datacontext._loan.FirstOrDefaultAsync(x => x.id == updateloan.id);
                 _lon.loannumber = updateloan.loannumber;
                 _lon.loanamount = updateloan.loanamount;
                 _lon.status = updateloan.status;
                 _lon.lastname = updateloan.lastname;
                 _lon.firstname = updateloan.firstname;
-                _srvc.message = updateloan.loannumber + " Updated Succesfully Completed";
-                _srvc.Data = _lon;
-            }
+                _datacontext._loan.Update(_lon);
+                await _datacontext.SaveChangesAsync();
+                _srvc.message = updateloan.loannumber + " Updated Succesfully Completed";               
             return _srvc;
         }
 
