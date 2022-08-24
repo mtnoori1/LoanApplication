@@ -108,12 +108,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Mark</td>
+        <tr  *ngFor="let _ln of _loan.data">
+          <th scope="row">{{_ln.loannumber}}</th>
+          <td>{{_ln.firstname}}</td>
+          <td>{{_ln.lastname}}</td>
+          <td>{{_ln.loanamount}}</td>
+          <td>{{_ln.status}}</td>
+          <td>{{_ln.term}}</td>
+          
+          
+          
+
           <!-------Creating Modal Pop up to shows loan details in a page------------->
           <td><button class="btn btn-outline-success " type="button" class="btn"(click)="openPopupView()"> 
             View Details
