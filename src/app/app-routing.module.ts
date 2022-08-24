@@ -6,7 +6,7 @@ import { LoginComponent } from './Login/login.component';
 import { AuthServices } from './Services/auth.services';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashBoardComponent,canActivate:[AuthServices]},
+  { path: 'dashboard', component: DashBoardComponent},
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
   //{ path: 'Logout', component: LoginComponent  }
