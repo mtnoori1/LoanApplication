@@ -23,6 +23,7 @@ namespace Loan_Webapi.Controllers
             _userservices = userServices;
         }
         [Microsoft.AspNetCore.Mvc.HttpGet]
+        [Authorize]
         [Route("getuser")]
         public async Task<ServiceResponse<List<User>>> UserDetails()
         {
@@ -30,10 +31,11 @@ namespace Loan_Webapi.Controllers
         }
         [Route("LoginUser")]
         [System.Web.Http.HttpPost]
+        [Authorize]
         public IActionResult Login(User _usr)
         {
-            string useravailable = _userservices.LoginUser(_usr);
-            if (useravailable == "Yes") {
+            
+            if (_userservices.LoginUser(_usr)) {
                 return Ok("Success");
             }else
             {

@@ -25,14 +25,14 @@ namespace Loan_Webapi.Services.UserService
             return _servic;
         }
 
-        public  string LoginUser(User usr)
+        public  bool LoginUser(User usr)
         {
             var useravailable = _datacontext._usr.Where(u => u.username == usr.username && u.password == usr.password).FirstOrDefault();
             if (useravailable != null)
             {
-                return "Yes";
+                return true;
             }
-            else return "No";
+            else return false;
         }
     }
 }
