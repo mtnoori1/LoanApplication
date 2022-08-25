@@ -1,6 +1,7 @@
 ﻿
 using Loan_Webapi.Models;
 using Loan_Webapi.Services.LoanService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,14 @@ namespace Loan_Webapi.Controllers
         {
             _loanservices = loanServices;
         }
-
+        
         [Route("getall")]
         [HttpGet]
         public async Task<ServiceResponse<List<Loan>>> Get()
         {
             return await _loanservices.GetAllData();
         }
+
         
         [Route("delbyid")]
         [HttpDelete]
@@ -33,12 +35,15 @@ namespace Loan_Webapi.Controllers
             return await _loanservices.DelById(id);
         }
 
+
+        
         [Route("postbybody")]
         [HttpPost]
         public async Task<ServiceResponse<string>> Postbybody(Loan ln)
         {
             return await _loanservices.PostbyBody(ln);
         }
+        
         [Route("putbybody")]
         [HttpPut]
         public async Task<ServiceResponse<Loan>> Putbybody(Loan ln)
