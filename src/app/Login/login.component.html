@@ -5,6 +5,7 @@
     </div>
   </div>
   <div class="row">
+    <div *ngIf="invalidlogin" class="alert alert-danger">Invalid username or password</div>
       <div class="col mb-3">
           <label for="username" class="form-label"><b>UserName</b></label>
           <input type="username" class="form-control" id="username" formControlName="username">

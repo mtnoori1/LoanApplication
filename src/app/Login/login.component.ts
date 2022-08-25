@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
      public _usr:any;
     username:string='';
     password:string='';
-    isUservalid:boolean=false;
+    invalidlogin:boolean=false;
     constructor(private router: Router,private _loginservices:LoginService){}
     ngOnInit() {
 
@@ -32,21 +32,14 @@ export class LoginComponent implements OnInit {
         console.log(this.loginform)
         this._loginservices.loginuser([this.loginform.value.username,this.loginform.value.pwd])
         .subscribe(res=>{
-            console.log(res);
-         if(res=="Failure"){
-             this.isUservalid=false;
-             alert('Login Unsuccessfull')
-         }else{
-             this.isUservalid=true;
-             alert('Login Succeefull')
-             this.router.navigate(['./dashboard']); 
-             
-         }
-           localStorage.setItem("isvaliduser", JSON.stringify(this.isUservalid));
-            console.log("From LocalStorage  "+localStorage.getItem('isvaliduser'));
-        }
-        
-            );
-            
+            const token=(<any>res).token;
+            localStorage.setItem("jwt",token);
+            this.invalidlogin=false;
+            this.router.navigate(["./dashboard"]);
+        },err=>{
+            this.invalidlogin=true;
+        })
+        ;                 
     }
+   
 }

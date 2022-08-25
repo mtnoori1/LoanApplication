@@ -16,10 +16,7 @@ export class DashBoardComponent implements OnInit{
   tabhead:string[]=["Loan Number","Loan Amount","Loan Term","Borrower Information","Property Information","Status","Loan Management Fee","Orgination Date","Orgination Account","Lien Information"];
   constructor(private _dashservice:DashboardServices,private router:Router){}
   ngOnInit(){
-      this._dashservice.getloan().subscribe(res=>{
-        this._loan=res;
-        console.log(this._loan.data);      
-      })
+     this._loan= this._dashservice._loan;
   }
 
 
@@ -43,6 +40,7 @@ export class DashBoardComponent implements OnInit{
   }
   Logout()
   {
+    localStorage.removeItem("jwt");
     this.router.navigate(['./login']);
   }
 }
